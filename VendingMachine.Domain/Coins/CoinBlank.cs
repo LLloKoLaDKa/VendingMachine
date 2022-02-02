@@ -1,6 +1,10 @@
-﻿namespace VendingMachine.Domain.Coins
+﻿using System;
+
+namespace VendingMachine.Domain.Coins
 {
-    class CoinBlank
+    public class CoinBlank
     {
+        public Guid? Id { get; set; }
+        public Int32? Nominal { get; set; }
     }
 }

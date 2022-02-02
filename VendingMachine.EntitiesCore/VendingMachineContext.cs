@@ -14,7 +14,7 @@ namespace VendingMachine.EntitiesCore
         internal DbSet<CoinDb> Coins { get; set; }
         internal DbSet<DrinkDb> Drinks { get; set; }
         internal DbSet<VMCoinDb> VMCoins { get; set; }
-        internal DbSet<VMCoinDb> VMDrinks { get; set; }
+        internal DbSet<VMDrinkDb> VMDrinks { get; set; }
 
         public VendingMachineContext() : base(_dbContextOptions) { }
     }

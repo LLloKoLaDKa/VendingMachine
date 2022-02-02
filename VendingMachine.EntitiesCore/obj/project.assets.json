@@ -1481,6 +1481,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "VendingMachine.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/VendingMachine.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VendingMachine.Domain.dll": {}
+        }
       }
     }
   },
@@ -5693,12 +5703,18 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "VendingMachine.Domain/1.0.0": {
+      "type": "project",
+      "path": "../VendingMachine.Domain/VendingMachine.Domain.csproj",
+      "msbuildProject": "../VendingMachine.Domain/VendingMachine.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Microsoft.EntityFrameworkCore >= 5.0.13",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.13"
+      "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.13",
+      "VendingMachine.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5732,7 +5748,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj": {
+              "projectPath": "D:\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

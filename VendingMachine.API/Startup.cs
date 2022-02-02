@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VendingMachine.EntitiesCore.Repositories;
+using VendingMachine.EntitiesCore.Repositories.Interfaces;
 
 namespace VendingMachine.API
 {
@@ -19,6 +21,13 @@ namespace VendingMachine.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            #region Dependency Injection
+
+            services.AddSingleton<ICoinsRepository, CoinsRepository>();
+            services.AddSingleton<IDrinksRepository, DrinksRepository>();
+
+            #endregion Dependency Injection
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

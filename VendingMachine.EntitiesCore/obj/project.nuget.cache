@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sMOk44vV1N3rOWlojBfaNNwwUR9i57P11wESRba3os53LDEPVXtdYyI4ZW6HtOIAUoB2tMX2sRohQwNS59rg4A==",
+  "dgSpecHash": "voIsoWuxosZ9fNZyg26mSrnyD/d/Za2Q7kLlp0E79fhMh0s1Czx4+Z1tfP/839SD6y8FS+K9fQUVNAIUu6lLJQ==",
   "success": true,
   "projectFilePath": "D:\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj",
   "expectedPackageFiles": [

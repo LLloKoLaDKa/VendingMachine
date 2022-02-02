@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace VendingMachine.EntitiesCore.Models
 {
     [Table("Drinks")]
-    internal class DrinkDb
+    public class DrinkDb
     {
         [Column("id")]
         public Guid Id { get; set; }

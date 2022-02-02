@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\VendingMachine\VendingMachine.UI\App.xaml
-11407045341
+1-1279171320
 
-51671119139
+5-939044084
 193-1891726104
-MainWindow.xaml;
+Views\Windows\BaseWindow.xaml;
 
 False
 

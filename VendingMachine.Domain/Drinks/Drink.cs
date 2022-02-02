@@ -1,6 +1,20 @@
-﻿namespace VendingMachine.Domain.Drinks
+﻿using System;
+
+namespace VendingMachine.Domain.Drinks
 {
-    class Drink
+    public class Drink
     {
+        public Guid Id { get; }
+        public String Name { get; }
+        public Byte[] Image { get; }
+        public Int32 Price { get; }
+
+        public Drink(Guid id, String name, Byte[] image, Int32 price)
+        {
+            Id = id;
+            Name = name;
+            Image = image;
+            Price = price;
+        }
     }
 }
