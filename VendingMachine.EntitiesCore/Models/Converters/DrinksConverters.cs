@@ -28,14 +28,17 @@ namespace VendingMachine.EntitiesCore.Models.Converters
 
         #region VMDrinks
 
-        public static VMDrink ToVMDrink(this VMDrinkDb db)
+        public static VMDrink ToVMDrink(this VMDrinkDb db, DrinkDb drinkDb)
         {
-            return new(db.Id, db.VendingMachineId, db.DrinkId, db.Count);
+            Drink drink = drinkDb.ToDrink();
+            return new(db.Id, db.VendingMachineId, drink, db.Count);
         }
 
-        public static VMDrink[] ToVMDrinks(this IEnumerable<VMDrinkDb> dbs)
+        public static VMDrink[] ToVMDrinks(this IEnumerable<VMDrinkDb> dbs, DrinkDb[] drinkDbs)
         {
-            return dbs.Select(ToVMDrink).ToArray();
+            return dbs
+                .Where(d => drinkDbs.Any(drink => drink.Id == d.DrinkId))
+                .Select(d => d.ToVMDrink(drinkDbs.First(drink => drink.Id == d.DrinkId))).ToArray();
         }
 
         public static VMDrinkDb ToVMDrinkDb(this VMDrinkBlank blank)

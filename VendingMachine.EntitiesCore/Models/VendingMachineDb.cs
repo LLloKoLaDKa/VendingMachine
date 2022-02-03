@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VendingMachine.EntitiesCore.Models
 {
-    [Table("VendingMachine")]
+    [Table("VendingMachines")]
     public class VendingMachineDb
     {
         [Column("id")]

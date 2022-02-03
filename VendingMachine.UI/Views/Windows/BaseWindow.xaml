@@ -4,9 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine.UI.Views.Windows"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         Title="BaseWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Window.Resources>
+        <SolidColorBrush x:Key="TransparentWhite">
+            <SolidColorBrush.Color>
+                <Color R="255" G="255" B="255" A="200"/>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+    </Window.Resources>
+    <Grid x:Name="mainGrid">
+        <Frame x:Name="mainFrame"/>
+        <Grid x:Name="loadingIcon" Visibility="Hidden" Background="{StaticResource TransparentWhite}">
+            <fa:ImageAwesome Icon="Refresh" Spin="True" Height="48" Width="48" />
+        </Grid>
     </Grid>
 </Window>

@@ -7,7 +7,7 @@ namespace VendingMachine.Domain.Coins
         public Guid Id { get; }
         public Guid VendingMachineId { get; }
         public Int32 Nominal { get; }
-        public Int32 Count { get; }
+        public Int32 Count { get; private set; }
         public Boolean IsActive { get; }
 
         public VMCoin(Guid id, Guid vendingMachineId, Int32 nominal, Int32 count, Boolean isActive)
@@ -18,5 +18,7 @@ namespace VendingMachine.Domain.Coins
             Count = count;
             IsActive = isActive;
         }
+
+        public void DecreaseCount() => Count--;
     }
 }

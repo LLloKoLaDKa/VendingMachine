@@ -6,14 +6,14 @@ namespace VendingMachine.Domain.Drinks
     {
         public Guid Id { get; }
         public Guid VendingMachineId { get; }
-        public Guid DrinkId { get; }
+        public Drink Drink { get; }
         public Int32 Count { get; }
 
-        public VMDrink(Guid id, Guid vendingMachineId, Guid drinkId, Int32 count)
+        public VMDrink(Guid id, Guid vendingMachineId, Drink drink, Int32 count)
         {
             Id = id;
             VendingMachineId = vendingMachineId;
-            DrinkId = drinkId;
+            Drink = drink;
             Count = count;
         }
     }

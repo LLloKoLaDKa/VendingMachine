@@ -1,0 +1,49 @@
+﻿<Page x:Class="VendingMachine.UI.Views.Pages.SalePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VendingMachine.UI.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SalePage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="dataListView" Grid.Column="0">
+            
+        </ListView>
+
+        <Grid Grid.Column="1" Background="SlateGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+                <RowDefinition Height="1.3*"/>
+                <RowDefinition Height="0.6*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="moneyLabel" Style="{DynamicResource MoneyLabel}" Content="{Binding ClientMoneyString}" Width="auto" HorizontalContentAlignment="Center" FontWeight="Bold"
+                   VerticalContentAlignment="Center" Margin="10px" Background="DarkSlateBlue"/>
+
+            <ListView x:Name="coinsListView" Grid.Row="1" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Nominal}" IsEnabled="{Binding IsActive}" Style="{DynamicResource CoinButton}" FontSize="16" FontWeight="Light" 
+                                BorderBrush="SaddleBrown" BorderThickness="3" Click="Money_Click"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Grid.Row="3" Content="Купить товары" Width="150px" VerticalAlignment="Center" FontSize="16px"/>
+        </Grid>
+    </Grid>
+</Page>

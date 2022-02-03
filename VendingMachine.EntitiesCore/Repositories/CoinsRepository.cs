@@ -32,7 +32,7 @@ namespace VendingMachine.EntitiesCore.Repositories
                 VMCoinDb[] vmCoinsDbs = context.VMCoins.Where(c => c.VendingMachineId == vendingMachineId).ToArray();
                 CoinDb[] coinDbs = context.Coins.Where(c => vmCoinsDbs.Select(vcd => vcd.CoinId).Contains(c.Id)).ToArray();
 
-                return vmCoinsDbs.ToVmCoins(coinDbs);
+                return vmCoinsDbs.ToVmCoins(coinDbs).OrderBy(c => c.Nominal).ToArray();
             });
         }
     }

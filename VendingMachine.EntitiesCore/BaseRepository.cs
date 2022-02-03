@@ -2,7 +2,7 @@
 
 namespace VendingMachine.EntitiesCore
 {
-    public abstract class BaseRepository    
+    public abstract class BaseRepository
     {
         internal void UseContext(Action<VendingMachineContext> action)
         {

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using VendingMachine.Domain;
+using VendingMachine.UI.Views.Pages;
+using VendingMachine.UI.Views.Windows;
 
 namespace VendingMachine.UI
 {
@@ -13,5 +10,19 @@ namespace VendingMachine.UI
     /// </summary>
     public partial class App : Application
     {
+        public static VendingMachineDomain VendingMachine;
+        public static BaseWindow Base => (Current.MainWindow as BaseWindow);
+
+        public static void SetVendingMachine(VendingMachineDomain vendingMachine) => VendingMachine = vendingMachine;
+
+        public static void ChangeToAdminPage()
+        {
+            Base.mainFrame.Content = new AdminPage();
+        }
+
+        public static void ChangeToSalePage()
+        {
+            Base.mainFrame.Content = new SalePage();
+        }
     }
 }

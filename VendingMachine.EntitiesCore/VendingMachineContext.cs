@@ -7,7 +7,7 @@ namespace VendingMachine.EntitiesCore
     {
         private static DbContextOptions<VendingMachineContext> _dbContextOptions =
             new DbContextOptionsBuilder<VendingMachineContext>()
-            .UseSqlServer(@"Server=DESKTOP-9SV6HT1\SQLEXPRESS; Database=VendingMachine;Trusted_Connection=True;")
+            .UseSqlServer(@"Server=Willy\SQLEXPRESS; Database=VendingMachine;Trusted_Connection=True;")
             .Options;
 
         internal DbSet<VendingMachineDb> VendingMachines { get; set; }

@@ -19,9 +19,9 @@ namespace VendingMachine.EntitiesCore.Models.Converters
             return dbs.Select(ToCoin).ToArray();
         }
 
-        public static CoinDb ToCoinDb(this VMCoinBlank vmCoinBlank)
+        public static CoinDb ToCoinDb(this CoinBlank vmCoinBlank)
         {
-            return new(Guid.NewGuid(), vmCoinBlank.Nominal);
+            return new(Guid.NewGuid(), vmCoinBlank.Nominal.Value);
         }
 
         #endregion Coins

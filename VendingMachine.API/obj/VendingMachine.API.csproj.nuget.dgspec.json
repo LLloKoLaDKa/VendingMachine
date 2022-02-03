@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj": {}
+    "D:\\git\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj": {}
   },
   "projects": {
-    "D:\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj": {
+    "D:\\git\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj",
+        "projectUniqueName": "D:\\git\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj",
         "projectName": "VendingMachine.API",
-        "projectPath": "D:\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj",
-        "packagesPath": "C:\\Users\\Student-SP4\\.nuget\\packages\\",
-        "outputPath": "D:\\VendingMachine\\VendingMachine.API\\obj\\",
+        "projectPath": "D:\\git\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "D:\\git\\VendingMachine\\VendingMachine.API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Student-SP4\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -32,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj": {
-                "projectPath": "D:\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj"
+              "D:\\git\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj": {
+                "projectPath": "D:\\git\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj"
               }
             }
           }
@@ -65,26 +61,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj": {
+    "D:\\git\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj",
+        "projectUniqueName": "D:\\git\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj",
         "projectName": "VendingMachine.Domain",
-        "projectPath": "D:\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj",
-        "packagesPath": "C:\\Users\\Student-SP4\\.nuget\\packages\\",
-        "outputPath": "D:\\VendingMachine\\VendingMachine.Domain\\obj\\",
+        "projectPath": "D:\\git\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "D:\\git\\VendingMachine\\VendingMachine.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Student-SP4\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -123,26 +115,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj": {
+    "D:\\git\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj",
+        "projectUniqueName": "D:\\git\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj",
         "projectName": "VendingMachine.EntitiesCore",
-        "projectPath": "D:\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj",
-        "packagesPath": "C:\\Users\\Student-SP4\\.nuget\\packages\\",
-        "outputPath": "D:\\VendingMachine\\VendingMachine.EntitiesCore\\obj\\",
+        "projectPath": "D:\\git\\VendingMachine\\VendingMachine.EntitiesCore\\VendingMachine.EntitiesCore.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "D:\\git\\VendingMachine\\VendingMachine.EntitiesCore\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Student-SP4\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -155,8 +143,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj": {
-                "projectPath": "D:\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj"
+              "D:\\git\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj": {
+                "projectPath": "D:\\git\\VendingMachine\\VendingMachine.Domain\\VendingMachine.Domain.csproj"
               }
             }
           }
@@ -195,7 +183,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

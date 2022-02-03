@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using VendingMachine.Domain.Drinks;
 using VendingMachine.EntitiesCore.Extensions;
 using VendingMachine.EntitiesCore.Models;
@@ -25,9 +26,14 @@ namespace VendingMachine.EntitiesCore.Repositories
             });
         }
 
-        public void GetAllDrinks(Guid VendingMachineId)
+        public VMDrink[] GetAllDrinks(Guid vendingMachineId)
         {
-            throw new NotImplementedException();
+            return UseContext(context =>
+            {
+                VMDrinkDb[] vmDrinkDbs = context.VMDrinks.Where(d => d.VendingMachineId == vendingMachineId).ToArray();
+                DrinkDb[] drinkDbs = context.Drinks.Where(d => vmDrinkDbs.Select(d => d.DrinkId).Contains(d.Id)).ToArray();
+                return vmDrinkDbs.ToVMDrinks(drinkDbs);
+            });
         }
     }
 }
