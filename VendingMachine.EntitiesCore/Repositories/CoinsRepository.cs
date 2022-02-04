@@ -10,16 +10,16 @@ namespace VendingMachine.EntitiesCore.Repositories
 {
     public class CoinsRepository : BaseRepository, ICoinsRepository
     {
-        public void SaveCoins(CoinBlank[] coinBlanks)
+        public void SaveCoins(VMCoinBlank[] coinBlanks)
         {
             UseContext(context =>
             {
-                foreach (CoinBlank blank in coinBlanks)
+                foreach (VMCoinBlank blank in coinBlanks)
                 {
-                    CoinDb coinDb = blank.ToCoinDb();
+                    VMCoinDb coinDb = blank.ToVMCoinDb();
 
                     context.Attach(coinDb);
-                    context.Coins.AddOrUpdate(coinDb);
+                    context.VMCoins.AddOrUpdate(coinDb);
                     context.SaveChanges();
                 }
             });
@@ -32,7 +32,7 @@ namespace VendingMachine.EntitiesCore.Repositories
                 VMCoinDb[] vmCoinsDbs = context.VMCoins.Where(c => c.VendingMachineId == vendingMachineId).ToArray();
                 CoinDb[] coinDbs = context.Coins.Where(c => vmCoinsDbs.Select(vcd => vcd.CoinId).Contains(c.Id)).ToArray();
 
-                return vmCoinsDbs.ToVmCoins(coinDbs).OrderBy(c => c.Nominal).ToArray();
+                return vmCoinsDbs.ToVmCoins(coinDbs).OrderBy(c => c.Coin.Nominal).ToArray();
             });
         }
     }

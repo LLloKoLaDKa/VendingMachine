@@ -7,8 +7,70 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage">
-
     <Grid>
-        
+
+        <TabControl>
+            <TabItem Header="Монеты">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30px"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.2*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Монеты" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20px" FontWeight="Bold"/>
+
+                    <ItemsControl x:Name="coinsListView" Grid.Row="1" VerticalAlignment="Center" ItemsSource="{Binding Coins}" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5px">
+                                    <Label Style="{DynamicResource CoinLabel}" Content="{Binding Nominal}" Margin="40px 10px 40px 20px" BorderBrush="{StaticResource CoinBorder}" BorderThickness="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70" Height="70"/>
+                                    <TextBox Text="{Binding Count}" HorizontalContentAlignment="Center" Width="70px"/>
+                                    <CheckBox IsChecked="{Binding IsActive}" HorizontalAlignment="Center" Margin="10px"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Button x:Name="saveButton" Grid.Row="2" Margin="5px" Content="Сохранить" FontSize="16px" Padding="30px 0px" Click="saveButton_Click"  HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Напитки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70px"/>
+                        <RowDefinition Height="70px"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Напитки" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20px" FontWeight="Bold"/>
+
+                    <Button x:Name="addButton" Grid.Row="1" Content="Добавить" Margin="100px 10px"/>
+
+                    <ListBox x:Name="drinksListBox" Grid.Row="2" Padding="50px 10px" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="2"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Отчёт">
+            
+            </TabItem>
+        </TabControl>
+        <Button x:Name="returnButton" Content="Назад" Click="returnButton_Click" Padding="10px" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
     </Grid>
 </Page>

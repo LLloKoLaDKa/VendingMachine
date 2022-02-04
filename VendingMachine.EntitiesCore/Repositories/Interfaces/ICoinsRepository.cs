@@ -5,7 +5,7 @@ namespace VendingMachine.EntitiesCore.Repositories.Interfaces
 {
     public interface ICoinsRepository
     {
-        public void SaveCoins(CoinBlank[] coinBlanks); 
+        public void SaveCoins(VMCoinBlank[] coinBlanks); 
         public VMCoin[] GetAllCoins(Guid vendingMachineId);
     }
 }

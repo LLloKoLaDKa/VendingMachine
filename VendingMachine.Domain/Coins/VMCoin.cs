@@ -6,15 +6,15 @@ namespace VendingMachine.Domain.Coins
     {
         public Guid Id { get; }
         public Guid VendingMachineId { get; }
-        public Int32 Nominal { get; }
+        public Coin Coin { get; }
         public Int32 Count { get; private set; }
-        public Boolean IsActive { get; }
+        public Boolean IsActive { get; private set; }
 
-        public VMCoin(Guid id, Guid vendingMachineId, Int32 nominal, Int32 count, Boolean isActive)
+        public VMCoin(Guid id, Guid vendingMachineId, Coin coin, Int32 count, Boolean isActive)
         {
             Id = id;
             VendingMachineId = vendingMachineId;
-            Nominal = nominal;
+            Coin = coin;
             Count = count;
             IsActive = isActive;
         }

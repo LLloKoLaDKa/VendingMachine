@@ -24,5 +24,10 @@ namespace VendingMachine.UI
         {
             Base.mainFrame.Content = new SalePage();
         }
+
+        public static void ShowMessage(string error)
+        {
+            MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }

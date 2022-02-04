@@ -28,20 +28,23 @@
             <Label x:Name="moneyLabel" Style="{DynamicResource MoneyLabel}" Content="{Binding ClientMoneyString}" Width="auto" HorizontalContentAlignment="Center" FontWeight="Bold"
                    VerticalContentAlignment="Center" Margin="10px" Background="DarkSlateBlue"/>
 
-            <ListView x:Name="coinsListView" Grid.Row="1" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                <ListView.ItemsPanel>
+            <ItemsControl x:Name="coinsListView" Grid.Row="1" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="2"/>
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+                </ItemsControl.ItemsPanel>
 
-                <ListView.ItemTemplate>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Nominal}" IsEnabled="{Binding IsActive}" Style="{DynamicResource CoinButton}" FontSize="16" FontWeight="Light" 
-                                BorderBrush="SaddleBrown" BorderThickness="3" Click="Money_Click"/>
+                        <Button Content="{Binding Coin.Nominal}" Margin="5px 2px" IsEnabled="{Binding IsActive}" Style="{DynamicResource CoinButton}" FontSize="16" FontWeight="Light" 
+                                BorderBrush="{DynamicResource CoinBorder}" BorderThickness="3" Click="Money_Click"/>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button x:Name="adminButton" Grid.Row="2" Content="Перейти в панель администратора" Padding="10" HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Click="adminButton_Click"/>
 
             <Button Grid.Row="3" Content="Купить товары" Width="150px" VerticalAlignment="Center" FontSize="16px"/>
         </Grid>

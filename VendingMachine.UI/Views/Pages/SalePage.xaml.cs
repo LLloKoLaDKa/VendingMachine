@@ -41,7 +41,6 @@ namespace VendingMachine.UI.Views.Pages
             if (App.VendingMachine is null) await App.Base.LoadVendingMachine();
 
             Coins = await HttpHelper.GetVmCoins(App.VendingMachine.Id);
-
             coinsListView.ItemsSource = null;
             coinsListView.ItemsSource = Coins;
 
@@ -51,9 +50,14 @@ namespace VendingMachine.UI.Views.Pages
         private void Money_Click(object sender, RoutedEventArgs e)
         {
             VMCoin coin = (sender as Button).DataContext as VMCoin;
-            ClientMoney += coin.Nominal;
+            ClientMoney += coin.Coin.Nominal;
             moneyLabel.DataContext = null;
             moneyLabel.DataContext = this;
+        }
+
+        private void adminButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.ChangeToAdminPage();
         }
     }
 }

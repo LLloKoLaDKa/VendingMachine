@@ -27,6 +27,7 @@ namespace VendingMachine.UI.Views.Windows
         {
             InitializeComponent();
             App.Current.Dispatcher.UnhandledException += ExceptionHandler;
+            App.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
             App.ChangeToSalePage();
         }
@@ -37,8 +38,11 @@ namespace VendingMachine.UI.Views.Windows
             App.SetVendingMachine(machine);
         }
 
-        private void ExceptionHandler(object sender, DispatcherUnhandledExceptionEventArgs args) =>
+        private void ExceptionHandler(object sender, DispatcherUnhandledExceptionEventArgs args) 
+        {
             MessageBox.Show("Произошла непредвиденная ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            LoadingStop();
+        }
 
         public void LoadingRun()
         {

@@ -30,7 +30,7 @@ namespace VendingMachine.EntitiesCore.Models.Converters
 
         public static VMCoin ToVMCoin(this VMCoinDb vmCoinDb, CoinDb coinDb)
         {
-            return new(vmCoinDb.Id, vmCoinDb.VendingMachineId, coinDb.Nominal, vmCoinDb.Count, vmCoinDb.IsActive);
+            return new(vmCoinDb.Id, vmCoinDb.VendingMachineId, coinDb.ToCoin(), vmCoinDb.Count, vmCoinDb.IsActive);
         }
 
         public static VMCoin[] ToVmCoins(this IEnumerable<VMCoinDb> dbs, IEnumerable<CoinDb> coinDbs)
