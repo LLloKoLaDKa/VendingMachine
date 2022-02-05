@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using VendingMachine.Domain;
 using VendingMachine.UI.Views.Pages;
 using VendingMachine.UI.Views.Windows;
@@ -25,9 +26,9 @@ namespace VendingMachine.UI
             Base.mainFrame.Content = new SalePage();
         }
 
-        public static void ShowMessage(string error)
+        public static MessageBoxResult ShowMessage(String error, MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage image = MessageBoxImage.Asterisk)
         {
-            MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return MessageBox.Show(error, "Информация", button, image);
         }
     }
 }

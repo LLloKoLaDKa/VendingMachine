@@ -13,7 +13,13 @@
     <Compile Update="Views\Pages\SalePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\AuthorizeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\BaseWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\DrinkEditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -24,7 +30,13 @@
     <Page Update="Views\Pages\SalePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Windows\AuthorizeWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\BaseWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\DrinkEditor.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

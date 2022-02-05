@@ -6,6 +6,7 @@ namespace VendingMachine.EntitiesCore.Repositories.Interfaces
     public interface IDrinksRepository
     {
         public void SaveDrink(VMDrinkBlank vmDrinkBlank);
-        public VMDrink[] GetAllDrinks(Guid VendingMachineId);
+        public VMDrink[] GetAllDrinks(Guid vendingMachineId);
+        public void DeleteDrink(Guid drinkId);
     }
 }

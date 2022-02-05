@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -17,6 +18,7 @@ using VendingMachine.Domain.Coins;
 using VendingMachine.Domain.Drinks;
 using VendingMachine.Domain.Results;
 using VendingMachine.UI.Tools;
+using VendingMachine.UI.Views.Windows;
 
 namespace VendingMachine.UI.Views.Pages
 {
@@ -25,12 +27,13 @@ namespace VendingMachine.UI.Views.Pages
     /// </summary>
     public partial class AdminPage : Page
     {
-        public VMCoinBlank[] Coins { get;set; }
+        public VMCoinBlank[] Coins { get; set; }
+        public VMDrinkBlank[] Drinks { get; set; }
 
         public AdminPage()
         {
             InitializeComponent();
-            LoadCoins();
+            tabControl.SelectedIndex = 0;
             this.DataContext = this;
         }
 
@@ -43,8 +46,8 @@ namespace VendingMachine.UI.Views.Pages
                 .Select(c => new VMCoinBlank(c.Id, c.VendingMachineId, c.Coin.Id, c.Coin.Nominal, c.Count, c.IsActive))
                 .ToArray();
 
-            coinsListView.ItemsSource = null;
-            coinsListView.ItemsSource = Coins;
+            coinsListBox.ItemsSource = null;
+            coinsListBox.ItemsSource = Coins;
 
             App.Base.LoadingStop();
         }
@@ -53,7 +56,16 @@ namespace VendingMachine.UI.Views.Pages
         {
             App.Base.LoadingRun();
 
-            VMDrink drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
+            VMDrink[] drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
+            Drinks = drinks
+                .Select(d => new VMDrinkBlank(d.Id, d.Drink.Name, d.Drink.Image, d.VendingMachineId, d.Drink.Id, d.Drink.Nominal, d.Count))
+                .OrderBy(d => d.Nominal)
+                .ToArray();
+
+            drinksListBox.ItemsSource = null;
+            drinksListBox.ItemsSource = Drinks;
+
+            App.Base.LoadingStop();
         }
 
         private void returnButton_Click(object sender, RoutedEventArgs e)
@@ -71,6 +83,40 @@ namespace VendingMachine.UI.Views.Pages
                 return;
             }
             LoadCoins();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl tabs = sender as TabControl;
+            switch (tabs.SelectedIndex)
+            {
+                case 0: LoadCoins(); break;
+                case 1: LoadDrinks(); break;
+                case 3: break; // Create Report;
+            }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e) => ShowEditor();
+
+        private void drinksListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            VMDrinkBlank item = listBox.SelectedItem as VMDrinkBlank;
+            if (item is null) return;
+
+            ShowEditor(item);
+        }
+
+        private void ShowEditor(VMDrinkBlank? blank = null)
+        {
+            App.Base.LoadingRun();
+
+            DrinkEditor editor = new(blank);
+            editor.Owner = App.Base;
+            editor.ShowDialog();
+
+            App.Base.LoadingStop();
+            LoadDrinks();
         }
     }
 }

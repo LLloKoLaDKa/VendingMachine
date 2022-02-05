@@ -52,3 +52,7 @@ D:\git\VendingMachine\VendingMachine.UI\obj\Debug\net5.0-windows\ref\VendingMach
 D:\git\VendingMachine\VendingMachine.UI\obj\Debug\net5.0-windows\VendingMachine.UI.pdb
 D:\git\VendingMachine\VendingMachine.UI\obj\Debug\net5.0-windows\VendingMachine.UI.genruntimeconfig.cache
 D:\git\VendingMachine\VendingMachine.UI\bin\Debug\net5.0-windows\FontAwesome.WPF.dll
+D:\git\VendingMachine\VendingMachine.UI\obj\Debug\net5.0-windows\Views\Windows\DrinkEditor.g.cs
+D:\git\VendingMachine\VendingMachine.UI\obj\Debug\net5.0-windows\Views\Windows\DrinkEditor.baml
+D:\git\VendingMachine\VendingMachine.UI\obj\Debug\net5.0-windows\Views\Windows\AuthorizeWindow.g.cs
+D:\git\VendingMachine\VendingMachine.UI\obj\Debug\net5.0-windows\Views\Windows\AuthorizeWindow.baml

@@ -19,7 +19,7 @@ namespace VendingMachine.EntitiesCore.Repositories
                     VMCoinDb coinDb = blank.ToVMCoinDb();
 
                     context.Attach(coinDb);
-                    context.VMCoins.AddOrUpdate(coinDb);
+                    context.VMCoins.AddOrUpdate(coinDb, context);
                     context.SaveChanges();
                 }
             });

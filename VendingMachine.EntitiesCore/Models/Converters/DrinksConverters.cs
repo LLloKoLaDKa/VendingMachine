@@ -21,7 +21,7 @@ namespace VendingMachine.EntitiesCore.Models.Converters
 
         public static DrinkDb ToDrinkDb(this VMDrinkBlank blank)
         {
-            return new(Guid.NewGuid(), blank.Name!, blank.Image, blank.Nominal.Value); ;
+            return new(blank.DrinkId.Value, blank.Name!, blank.Image, blank.Nominal.Value); ;
         }
 
         #endregion Drinks

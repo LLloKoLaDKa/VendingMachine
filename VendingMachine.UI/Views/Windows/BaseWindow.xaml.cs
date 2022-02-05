@@ -41,6 +41,7 @@ namespace VendingMachine.UI.Views.Windows
         private void ExceptionHandler(object sender, DispatcherUnhandledExceptionEventArgs args) 
         {
             MessageBox.Show("Произошла непредвиденная ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            args.Handled = true;
             LoadingStop();
         }
 

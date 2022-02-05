@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\git\VendingMachine\VendingMachine.UI\App.xaml
-3-300607363
+5160348085
 
-8-1762970609
+10261058689
 195-1493376366
-Views\Pages\AdminPage.xaml;Views\Pages\SalePage.xaml;Views\Windows\BaseWindow.xaml;
+Views\Pages\AdminPage.xaml;Views\Pages\SalePage.xaml;Views\Windows\AuthorizeWindow.xaml;Views\Windows\BaseWindow.xaml;Views\Windows\DrinkEditor.xaml;
 
 True
 

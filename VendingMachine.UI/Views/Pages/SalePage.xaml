@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VendingMachine.UI.Views.Pages"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SalePage">
@@ -13,40 +14,115 @@
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="dataListView" Grid.Column="0">
-            
-        </ListView>
+        <ListBox x:Name="drinksListBox" Grid.Column="0" Padding="10px" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="drinksListBox_SelectionChanged">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source="{Binding Drink.Image}" Height="100"/>
+                        <TextBlock Text="{Binding Drink.Name}" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Drink.Nominal, StringFormat={} {0} руб.}" TextAlignment="Center" FontSize="14"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Grid Grid.Column="1" Background="SlateGray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.5*"/>
-                <RowDefinition/>
                 <RowDefinition Height="1.3*"/>
-                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="50px"/>
+                <RowDefinition/>
+                <RowDefinition Height="50px"/>
             </Grid.RowDefinitions>
 
-            <Label x:Name="moneyLabel" Style="{DynamicResource MoneyLabel}" Content="{Binding ClientMoneyString}" Width="auto" HorizontalContentAlignment="Center" FontWeight="Bold"
-                   VerticalContentAlignment="Center" Margin="10px" Background="DarkSlateBlue"/>
+            <Border Background="DarkSlateBlue" CornerRadius="10" Margin="10" Padding="5px" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-            <ItemsControl x:Name="coinsListView" Grid.Row="1" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="2"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+                    <Label x:Name="basketLabel" Content="{Binding OrderPrice}" Foreground="White" FontSize="16px" HorizontalAlignment="Center" Background="DarkSlateBlue"/>
+                    
+                    <ScrollViewer Grid.RowSpan="2" Margin="0px 30px 0px 0px">
+                        <ItemsControl x:Name="orderListBox" Background="Transparent" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="5px">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
 
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding Coin.Nominal}" Margin="5px 2px" IsEnabled="{Binding IsActive}" Style="{DynamicResource CoinButton}" FontSize="16" FontWeight="Light" 
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="0.5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <TextBlock Grid.Row="0" Text="{Binding Drink.Name}" FontSize="16px" FontWeight="Bold" TextWrapping="Wrap"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Count, StringFormat={}{0} шт.}"/>
+                                        <TextBlock Grid.Row="2" Text="{Binding TotalPrice, StringFormat=Сумма: {0} руб.}"/>
+
+                                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Padding="5px"
+                                                Grid.Column="1" Tag="{Binding Drink.Id}" Click="DecreaseItem_Click">
+                                            <Button.Content>
+                                                <fa:FontAwesome Icon="Minus"/>
+                                            </Button.Content>
+                                        </Button>
+
+                                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Padding="5px"
+                                                Grid.Column="2"  Tag="{Binding Drink.Id}" Click="RemoveItem_Click">
+                                            <Button.Content>
+                                                <fa:FontAwesome Icon="Trash"/>
+                                            </Button.Content>
+                                        </Button>
+                                        
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <TextBlock Grid.Row="1" Text="{Binding ClientMoneyString}" FontSize="16" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
+
+            <ItemsControl x:Name="coinsListView" Grid.Row="2" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Coin.Nominal}" Margin="5px" IsEnabled="{Binding IsActive}" Style="{DynamicResource CoinButton}" FontSize="16" FontWeight="Light" 
                                 BorderBrush="{DynamicResource CoinBorder}" BorderThickness="3" Click="Money_Click"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+            
+        <Button x:Name="buyButton" Grid.Row="3" Content="Купить товары" Width="150px" VerticalAlignment="Center" FontSize="16px" Click="buyButton_Click"/>
 
-            <Button x:Name="adminButton" Grid.Row="2" Content="Перейти в панель администратора" Padding="10" HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Click="adminButton_Click"/>
-
-            <Button Grid.Row="3" Content="Купить товары" Width="150px" VerticalAlignment="Center" FontSize="16px"/>
         </Grid>
+
+        <Button x:Name="adminButton" Grid.Column="1" Padding="10 5" HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom" Click="adminButton_Click" FontSize="18px">
+            <Button.Content>
+                <fa:FontAwesome Icon="SignIn"/>
+            </Button.Content>
+        </Button>
     </Grid>
 </Page>
