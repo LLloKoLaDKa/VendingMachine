@@ -22,11 +22,17 @@ namespace VendingMachine.EntitiesCore.Repositories
                 context.Attach(drinkDb);
                 context.Drinks.AddOrUpdate(drinkDb, context);
 
-                VMDrinkDb vmDrinkDb = vmDrinkBlank.ToVMDrinkDb();
-                context.Attach(vmDrinkDb);
-                context.VMDrinks.AddOrUpdate(vmDrinkDb, context);
+                VMDrinkDb vmDrinkDb = context.VMDrinks.FirstOrDefault(d => d.Id == vmDrinkBlank.Id.Value);
+                Boolean isRefill = vmDrinkDb is null || vmDrinkBlank.Count.Value != vmDrinkDb.Count;
+                if (vmDrinkDb is null || isRefill)
+                {
+                    vmDrinkDb = vmDrinkBlank.ToVMDrinkDb();
+                    context.Attach(vmDrinkDb);
+                    context.VMDrinks.AddOrUpdate(vmDrinkDb, context);
+                }
 
-                VMDrinkHistoryDb historyDb = new(Guid.NewGuid(), vmDrinkDb.DrinkId, vmDrinkDb.Count, drinkDb.Price, HistoryType.Refill);
+                VMDrinkHistoryDb historyDb = new(Guid.NewGuid(), vmDrinkDb.DrinkId, isRefill ? vmDrinkDb.Count : 0, drinkDb.Price,
+                    isRefill ? HistoryType.Refill : HistoryType.PriceChange);
                 context.VMDrinkHistories.Add(historyDb);
 
                 context.SaveChanges();

@@ -11,5 +11,10 @@
         /// Покупка
         /// </summary>
         Buy = 2,
+
+        /// <summary>
+        /// Изменение цены
+        /// </summary>
+        PriceChange = 3
     }
 }

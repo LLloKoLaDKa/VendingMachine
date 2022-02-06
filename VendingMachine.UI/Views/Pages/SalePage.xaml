@@ -31,7 +31,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Grid Grid.Column="1" Background="SlateGray">
+        <Grid Grid.Column="1" Background="BurlyWood">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.3*"/>
                 <RowDefinition Height="50px"/>
@@ -39,14 +39,14 @@
                 <RowDefinition Height="50px"/>
             </Grid.RowDefinitions>
 
-            <Border Background="DarkSlateBlue" CornerRadius="10" Margin="10" Padding="5px" >
+            <Border Background="{StaticResource MainColor}" CornerRadius="10" Margin="10" Padding="5px" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label x:Name="basketLabel" Content="{Binding OrderPriceString}" Foreground="White" FontSize="16px" HorizontalAlignment="Center" Background="DarkSlateBlue"/>
+                    <Label x:Name="basketLabel" Content="{Binding OrderPriceString}" Foreground="White" FontSize="16px" HorizontalAlignment="Center" Background="{StaticResource MainColor}"/>
                     
                     <ScrollViewer Grid.RowSpan="2" Margin="0px 30px 0px 0px">
                         <ItemsControl x:Name="orderListBox" Background="Transparent" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -66,23 +66,31 @@
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="0.3*"/>
+                                            <ColumnDefinition Width="0.3*"/>
+                                            <ColumnDefinition Width="0.3*"/>
                                         </Grid.ColumnDefinitions>
                                         
                                         <TextBlock Grid.Row="0" Text="{Binding Drink.Name}" FontSize="16px" FontWeight="Bold" TextWrapping="Wrap"/>
                                         <TextBlock Grid.Row="1" Text="{Binding Count, StringFormat={}{0} шт.}"/>
                                         <TextBlock Grid.Row="2" Text="{Binding TotalPrice, StringFormat=Сумма: {0} руб.}"/>
 
-                                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Padding="5px"
+                                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Padding="5px 3px"
                                                 Grid.Column="1" Tag="{Binding Drink.Id}" Click="DecreaseItem_Click">
                                             <Button.Content>
                                                 <fa:FontAwesome Icon="Minus"/>
                                             </Button.Content>
                                         </Button>
+                                        
+                                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Padding="5px 3px"
+                                                Grid.Column="2" Tag="{Binding Drink.Id}" Click="AddItem_Click">
+                                            <Button.Content>
+                                                <fa:FontAwesome Icon="Plus"/>
+                                            </Button.Content>
+                                        </Button>
 
-                                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Padding="5px"
-                                                Grid.Column="2"  Tag="{Binding Drink.Id}" Click="RemoveItem_Click">
+                                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Padding="5px 3px"
+                                                Grid.Column="3"  Tag="{Binding Drink.Id}" Click="RemoveItem_Click">
                                             <Button.Content>
                                                 <fa:FontAwesome Icon="Trash"/>
                                             </Button.Content>
@@ -109,7 +117,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Content="{Binding Coin.Nominal}" Margin="5px" IsEnabled="{Binding IsActive}" Style="{DynamicResource CoinButton}" FontSize="16" FontWeight="Light" 
-                                BorderBrush="{DynamicResource CoinBorder}" BorderThickness="3" Click="Money_Click"/>
+                                BorderBrush="{StaticResource MainColor}" BorderThickness="3" Click="Money_Click"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

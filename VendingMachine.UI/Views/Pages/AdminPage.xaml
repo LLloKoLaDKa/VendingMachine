@@ -10,7 +10,7 @@
     <Grid>
 
         <TabControl x:Name="tabControl" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="Монеты">
+            <TabItem Header="Монеты" Width="260">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30px"/>
@@ -29,7 +29,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5px">
-                                    <Label Style="{DynamicResource CoinLabel}" Content="{Binding Nominal}" Margin="40px 10px 40px 20px" BorderBrush="{StaticResource CoinBorder}" BorderThickness="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70" Height="70"/>
+                                    <Label Style="{DynamicResource CoinLabel}" Content="{Binding Nominal}" Margin="40px 10px 40px 20px" BorderThickness="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70" Height="70"/>
                                     <TextBox Text="{Binding Count}" HorizontalContentAlignment="Center" Width="70px"/>
                                     <CheckBox IsChecked="{Binding IsActive}" HorizontalAlignment="Center" Margin="10px"/>
                                 </StackPanel>
@@ -40,7 +40,7 @@
                     <Button x:Name="saveButton" Grid.Row="2" Margin="5px" Content="Сохранить" FontSize="16px" Padding="30px 0px" Click="saveButton_Click"  HorizontalAlignment="Center"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Напитки">
+            <TabItem Header="Напитки" Width="260">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70px"/>
@@ -52,7 +52,8 @@
 
                     <Button x:Name="addButton" Grid.Row="1" Content="Добавить" Margin="100px 10px" Click="addButton_Click"/>
 
-                    <ListBox x:Name="drinksListBox" Grid.Row="2" SelectionChanged="drinksListBox_SelectionChanged" Padding="50px 10px" ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="LightGray">
+                    <ListBox x:Name="drinksListBox" Grid.Row="2" SelectionChanged="drinksListBox_SelectionChanged" Padding="50px 10px"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="WhiteSmoke">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="3"/>
@@ -72,7 +73,7 @@
                     </ListBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Отчёт">
+            <TabItem Header="Отчёт" Width="260">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70px"/>
@@ -90,7 +91,7 @@
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="Gray" Background="WhiteSmoke" Margin="5px" Padding="5px">
+                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource MainColor}" Background="White" Margin="5px" Padding="5px">
                                         <Grid Height="120px">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.7*"/>
@@ -104,7 +105,7 @@
                                                 <TextBlock Text="{Binding Drink.Name}" FontWeight="Bold" FontSize="20"/>
                                                 <TextBlock Text="{Binding Drink.Nominal, StringFormat=Текущая цена: {0} руб.}" FontSize="16"/>
                                                 <TextBlock Text="{Binding RefillDateString, StringFormat=Пополнение: {0}}" FontSize="16"/>
-                                                <TextBlock Text="{Binding AvailableCount, StringFormat=Профит: {0} руб.}" FontSize="16"/>
+                                                <TextBlock Text="{Binding AvailableCount, StringFormat=Осталось: {0} шт.}" FontSize="16"/>
                                                 <TextBlock Text="{Binding Profit, StringFormat=Профит: {0} руб.}" FontSize="16"/>
                                             </StackPanel>
 

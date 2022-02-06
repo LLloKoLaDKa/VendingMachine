@@ -35,6 +35,7 @@ namespace VendingMachine.UI.Views.Pages
         public AdminPage()
         {
             InitializeComponent();
+
             tabControl.SelectedIndex = 0;
             this.DataContext = this;
         }

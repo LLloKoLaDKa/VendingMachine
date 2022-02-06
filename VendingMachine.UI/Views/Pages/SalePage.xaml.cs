@@ -133,6 +133,21 @@ namespace VendingMachine.UI.Views.Pages
             basketLabel.Content = OrderPriceString;
         }
 
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Guid drinkId = Guid.Parse(button.Tag.ToString());
+
+            BasketDrink basketDrink = Basket.FirstOrDefault(i => i.Drink.Id == drinkId);
+            if (basketDrink is null) return;
+
+            basketDrink.Count++;
+
+            orderListBox.ItemsSource = null;
+            orderListBox.ItemsSource = Basket;
+            basketLabel.Content = OrderPriceString;
+        }
+
         private void RemoveItem_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
