@@ -48,7 +48,7 @@
 
                     <Label x:Name="basketLabel" Content="{Binding OrderPriceString}" Foreground="White" FontSize="16px" HorizontalAlignment="Center" Background="{StaticResource MainColor}"/>
                     
-                    <ScrollViewer Grid.RowSpan="2" Margin="0px 30px 0px 0px">
+                    <ScrollViewer Grid.RowSpan="2" Margin="0px 30px 0px 0px" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ItemsControl x:Name="orderListBox" Background="Transparent" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
