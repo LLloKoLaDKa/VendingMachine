@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine.UI.Views.Windows"
         mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-        Title="AuthorizeWindow" Height="130" Width="200">
+        Title="Управление аппаратом" Height="130" Width="200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30px"/>

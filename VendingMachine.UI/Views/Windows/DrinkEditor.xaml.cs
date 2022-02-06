@@ -61,7 +61,6 @@ namespace VendingMachine.UI.Views.Windows
                 return;
             }
 
-            App.ShowMessage("Напиток сохранён!");
             if (Owner is not null) Owner.Activate();
             Close();
         }

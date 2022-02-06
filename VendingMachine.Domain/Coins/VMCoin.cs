@@ -19,6 +19,8 @@ namespace VendingMachine.Domain.Coins
             IsActive = isActive;
         }
 
+        public void AddCount() => Count++;
         public void DecreaseCount() => Count--;
+        public void DecreaseCount(Int32 count) => Count -= count;
     }
 }

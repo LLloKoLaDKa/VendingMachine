@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VendingMachine.Domain;
 using VendingMachine.Domain.Coins;
 using VendingMachine.Domain.Drinks;
+using VendingMachine.Domain.Reports;
 using VendingMachine.Domain.Results;
 
 namespace VendingMachine.UI.Tools
@@ -56,6 +57,18 @@ namespace VendingMachine.UI.Tools
             return JsonSerializer.Deserialize<Result>(response);
         }
 
+        public static async Task<Result> SaveDrinks(VMDrinkBlank[] blanks)
+        {
+            String fullUrl = _host + "Drinks/SaveDrinks";
+
+            HttpRequestMessage request = new(HttpMethod.Post, fullUrl);
+            request.Content = JsonContent.Create(blanks);
+            HttpResponseMessage responseMessage = await _client.SendAsync(request);
+            String response = await responseMessage.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<Result>(response);
+        }
+
         public async static Task<VMDrink[]> GetVmDrinks(Guid vendingMachineId)
         {
             String fullUrl = _host + $"Drinks/GetAll?vendingMachineId={vendingMachineId}";
@@ -77,6 +90,18 @@ namespace VendingMachine.UI.Tools
             String response = await responseMessage.Content.ReadAsStringAsync();
 
             return JsonSerializer.Deserialize<Result>(response);
+        }
+
+        public async static Task<DrinkReport[]> GetDrinkReports(Guid[] drinkIds)
+        {
+            String fullUrl = _host + $"Drinks/GetReports";
+
+            HttpRequestMessage request = new(HttpMethod.Post, fullUrl);
+            request.Content = JsonContent.Create(drinkIds);
+            HttpResponseMessage responseMessage = await _client.SendAsync(request);
+            String response = await responseMessage.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<DrinkReport[]>(response);
         }
 
         #endregion Drinks

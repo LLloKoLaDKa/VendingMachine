@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VendingMachine.Domain.Coins;
 using VendingMachine.Domain.Drinks;
+using VendingMachine.Domain.Reports;
 using VendingMachine.Domain.Results;
 using VendingMachine.UI.Tools;
 using VendingMachine.UI.Views.Windows;
@@ -29,6 +30,7 @@ namespace VendingMachine.UI.Views.Pages
     {
         public VMCoinBlank[] Coins { get; set; }
         public VMDrinkBlank[] Drinks { get; set; }
+        public DrinkReport[] Reports { get; set; }
 
         public AdminPage()
         {
@@ -37,7 +39,7 @@ namespace VendingMachine.UI.Views.Pages
             this.DataContext = this;
         }
 
-        private async void LoadCoins()
+        private async Task LoadCoins()
         {
             App.Base.LoadingRun();
 
@@ -52,7 +54,7 @@ namespace VendingMachine.UI.Views.Pages
             App.Base.LoadingStop();
         }
 
-        private async void LoadDrinks()
+        private async Task LoadDrinks()
         {
             App.Base.LoadingRun();
 
@@ -64,6 +66,19 @@ namespace VendingMachine.UI.Views.Pages
 
             drinksListBox.ItemsSource = null;
             drinksListBox.ItemsSource = Drinks;
+
+            App.Base.LoadingStop();
+        }
+
+        private async Task LoadReports()
+        {
+            App.Base.LoadingRun();
+
+            VMDrink[] drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
+            Reports = await HttpHelper.GetDrinkReports(drinks.Select(d => d.Drink.Id).ToArray());
+
+            reportsBox.ItemsSource = null;
+            reportsBox.ItemsSource = Reports;
 
             App.Base.LoadingStop();
         }
@@ -82,17 +97,17 @@ namespace VendingMachine.UI.Views.Pages
                 App.ShowMessage(result.Error);
                 return;
             }
-            LoadCoins();
+            await LoadCoins();
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TabControl tabs = sender as TabControl;
             switch (tabs.SelectedIndex)
             {
-                case 0: LoadCoins(); break;
-                case 1: LoadDrinks(); break;
-                case 3: break; // Create Report;
+                case 0: await LoadCoins(); break;
+                case 1: await LoadDrinks(); break;
+                case 2: await LoadReports(); break;
             }
         }
 
@@ -107,7 +122,7 @@ namespace VendingMachine.UI.Views.Pages
             ShowEditor(item);
         }
 
-        private void ShowEditor(VMDrinkBlank? blank = null)
+        private async void ShowEditor(VMDrinkBlank? blank = null)
         {
             App.Base.LoadingRun();
 
@@ -116,7 +131,7 @@ namespace VendingMachine.UI.Views.Pages
             editor.ShowDialog();
 
             App.Base.LoadingStop();
-            LoadDrinks();
+            await LoadDrinks();
         }
     }
 }

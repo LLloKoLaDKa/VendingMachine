@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VendingMachine.UI.Views.Pages"
       xmlns:fa="http://schemas.fontawesome.io/icons/"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SalePage">
     <Grid>
@@ -46,7 +46,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label x:Name="basketLabel" Content="{Binding OrderPrice}" Foreground="White" FontSize="16px" HorizontalAlignment="Center" Background="DarkSlateBlue"/>
+                    <Label x:Name="basketLabel" Content="{Binding OrderPriceString}" Foreground="White" FontSize="16px" HorizontalAlignment="Center" Background="DarkSlateBlue"/>
                     
                     <ScrollViewer Grid.RowSpan="2" Margin="0px 30px 0px 0px">
                         <ItemsControl x:Name="orderListBox" Background="Transparent" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -118,7 +118,7 @@
 
         </Grid>
 
-        <Button x:Name="adminButton" Grid.Column="1" Padding="10 5" HorizontalAlignment="Right"
+        <Button x:Name="adminButton" Grid.Column="1" Margin="2" Padding="10 5" HorizontalAlignment="Right"
                         VerticalAlignment="Bottom" Click="adminButton_Click" FontSize="18px">
             <Button.Content>
                 <fa:FontAwesome Icon="SignIn"/>

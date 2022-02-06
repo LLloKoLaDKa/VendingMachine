@@ -73,7 +73,76 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Отчёт">
-            
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70px"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Отчёт по продажам" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20px" FontWeight="Bold"/>
+
+                    <ScrollViewer Grid.Row="1">
+                        <ItemsControl x:Name="reportsBox">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="Gray" Background="WhiteSmoke" Margin="5px" Padding="5px">
+                                        <Grid Height="120px">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.7*"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Source="{Binding Drink.Image}" Height="100"/>
+
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock Text="{Binding Drink.Name}" FontWeight="Bold" FontSize="20"/>
+                                                <TextBlock Text="{Binding Drink.Nominal, StringFormat=Текущая цена: {0} руб.}" FontSize="16"/>
+                                                <TextBlock Text="{Binding RefillDateString, StringFormat=Пополнение: {0}}" FontSize="16"/>
+                                                <TextBlock Text="{Binding AvailableCount, StringFormat=Профит: {0} руб.}" FontSize="16"/>
+                                                <TextBlock Text="{Binding Profit, StringFormat=Профит: {0} руб.}" FontSize="16"/>
+                                            </StackPanel>
+
+                                            <TextBlock Grid.Column="2" Text="Продажи" TextAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                                            <ScrollViewer Grid.Column="2" Margin="0px 25px 0px 0px">
+                                                <ItemsControl ItemsSource="{Binding Purchases}" >
+                                                    <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <UniformGrid Columns="1"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="30px"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Text="{Binding Count,StringFormat=Количество: {0}}" TextAlignment="Center"/>
+                                                            <TextBlock Grid.Column="1" Text="{Binding Price,StringFormat=Цена: {0}}" TextAlignment="Center"/>
+                                                            <TextBlock Grid.Column="2" Text="{Binding Profit,StringFormat=Профит: {0}}" TextAlignment="Center"/>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
         </TabControl>
         <Button x:Name="returnButton" Content="Назад к автомату" Click="returnButton_Click" Padding="10px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10px 40px 0px 0px" />

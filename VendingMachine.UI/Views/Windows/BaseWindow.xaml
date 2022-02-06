@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine.UI.Views.Windows" WindowStartupLocation="CenterScreen"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        mc:Ignorable="d"
-        Title="BaseWindow" Height="450" Width="800">
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Title="Торговый автомат" Height="450" Width="800">
     <Window.Resources>
     </Window.Resources>
     <Grid x:Name="mainGrid">
