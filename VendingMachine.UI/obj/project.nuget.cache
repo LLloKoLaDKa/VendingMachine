@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ODNu2hZrnMaM7d/vWE13/OaynqUqlaXtfA3u8gZJydih6fVB1qClSEnhj5MBrB6c7uPkyk+cqQnQnXX4C1qxAg==",
+  "dgSpecHash": "VjhVgMZ3QpZFZbkMfVyYtO4lXbF1UolX5ryk1ZF9y8/Dh6T+mOO9yw7rNHbR30H4GDou0vjoej8fo0T+DwtgVA==",
   "success": true,
   "projectFilePath": "D:\\git\\VendingMachine\\VendingMachine.UI\\VendingMachine.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512"
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
   "logs": [
     {

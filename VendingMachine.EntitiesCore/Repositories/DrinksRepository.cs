@@ -31,7 +31,7 @@ namespace VendingMachine.EntitiesCore.Repositories
                     context.VMDrinks.AddOrUpdate(vmDrinkDb, context);
                 }
 
-                VMDrinkHistoryDb historyDb = new(Guid.NewGuid(), vmDrinkDb.DrinkId, isRefill ? vmDrinkDb.Count : 0, drinkDb.Price,
+                VMDrinkHistoryDb historyDb = new(Guid.NewGuid(), vmDrinkDb.DrinkId, vmDrinkDb.VendingMachineId, isRefill ? vmDrinkDb.Count : 0, drinkDb.Price,
                     isRefill ? HistoryType.Refill : HistoryType.PriceChange);
                 context.VMDrinkHistories.Add(historyDb);
 
@@ -54,7 +54,7 @@ namespace VendingMachine.EntitiesCore.Repositories
                     d.Count = blank.Count.Value;
                     context.Entry(d).State = EntityState.Modified;
 
-                    VMDrinkHistoryDb historyDb = new(Guid.NewGuid(), d.DrinkId, soldCount, blank.Nominal.Value, HistoryType.Buy);
+                    VMDrinkHistoryDb historyDb = new(Guid.NewGuid(), d.DrinkId, d.VendingMachineId, soldCount, blank.Nominal.Value, HistoryType.Buy);
                     context.Entry(historyDb).State = EntityState.Added;
                 });
 
@@ -92,11 +92,13 @@ namespace VendingMachine.EntitiesCore.Repositories
 
         #region DrinkReports
 
-        public DrinkReport[] GetDrinkReports(Guid[] drinksIds)
+        public DrinkReport[] GetDrinkReports(Guid[] drinksIds, Guid vendingMachineId)
         {
             return UseContext(context =>
             {
-                VMDrinkHistoryDb[] historyDbs = context.VMDrinkHistories.Where(h => drinksIds.Contains(h.DrinkId)).ToArray();
+                VMDrinkHistoryDb[] historyDbs = context.VMDrinkHistories
+                    .Where(h => drinksIds.Contains(h.DrinkId) && h.VendingMachineId == vendingMachineId)
+                    .ToArray();
                 VMDrinkHistoryDb[] reportDbs = GetReportDbs(historyDbs);
 
                 Guid[] drinkIds = reportDbs.Select(r => r.DrinkId).ToArray();

@@ -94,7 +94,7 @@ namespace VendingMachine.UI.Tools
 
         public async static Task<DrinkReport[]> GetDrinkReports(Guid[] drinkIds)
         {
-            String fullUrl = _host + $"Drinks/GetReports";
+            String fullUrl = _host + $"Drinks/GetReports?vendingMachineId={App.VendingMachine.Id}";
 
             HttpRequestMessage request = new(HttpMethod.Post, fullUrl);
             request.Content = JsonContent.Create(drinkIds);

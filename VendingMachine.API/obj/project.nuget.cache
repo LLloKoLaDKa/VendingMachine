@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KlF//mrTrnBgVrCaCiycLTXojVONO7MzM5rYk55fWU7j2tJZFPCVng4V9E9RO+VWMBXbumcAs8MZIWCeYJ3vsw==",
+  "dgSpecHash": "ZxBPB65MxCe5YrZtGEUwX4ntw2nJJgC4Qsz/Eb/CICAFZaQ8AWltdMj3deaV4ebrUSVeJxUE/tKZcvKCAn2WOA==",
   "success": true,
   "projectFilePath": "D:\\git\\VendingMachine\\VendingMachine.API\\VendingMachine.API.csproj",
   "expectedPackageFiles": [
@@ -132,7 +132,8 @@
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
   "logs": [
     {

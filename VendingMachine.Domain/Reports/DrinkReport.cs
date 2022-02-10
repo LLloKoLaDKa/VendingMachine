@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.Json.Serialization;
 using VendingMachine.Domain.Drinks;
 
 namespace VendingMachine.Domain.Reports

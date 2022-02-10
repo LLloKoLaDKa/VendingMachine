@@ -13,7 +13,7 @@ namespace VendingMachine.EntitiesCore.Repositories.Interfaces
 
         #region DrinkReports
 
-        public DrinkReport[] GetDrinkReports(Guid[] drinksIds);
+        public DrinkReport[] GetDrinkReports(Guid[] drinksIds, Guid vendingMachineId);
 
         #endregion DrinkReports
     }

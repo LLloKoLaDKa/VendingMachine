@@ -6,9 +6,10 @@ namespace VendingMachine.Domain.Reports
     {
         public Guid Id { get; }
         public Guid DrinkId { get; }
+        public Guid VendingMachineId { get; }
 
         /// <summary>
-        /// При Type = Refill => количество после заправки
+        /// При Type = Refill/ChangePrice => количество после заправки
         /// При Type = Buy => Количество покупки
         /// </summary>
         public Int32 Count { get; }
@@ -18,10 +19,11 @@ namespace VendingMachine.Domain.Reports
 
         public Int32 Profit => Count * Price;
 
-        public DrinkHistory(Guid id, Guid drinkId, Int32 count, Int32 price, HistoryType type, DateTime date)
+        public DrinkHistory(Guid id, Guid drinkId, Guid vendingMachineId, Int32 count, Int32 price, HistoryType type, DateTime date)
         {
             Id = id;
             DrinkId = drinkId;
+            VendingMachineId = vendingMachineId;
             Count = count;
             Price = price;
             Type = type;

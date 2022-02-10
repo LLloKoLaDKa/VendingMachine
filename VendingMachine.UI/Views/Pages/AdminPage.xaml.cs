@@ -42,46 +42,43 @@ namespace VendingMachine.UI.Views.Pages
 
         private async Task LoadCoins()
         {
-            App.Base.LoadingRun();
+            await UserInterface.Freeze(async () =>
+            {
+                VMCoin[] coins = await HttpHelper.GetVmCoins(App.VendingMachine.Id);
+                Coins = coins
+                    .Select(c => new VMCoinBlank(c.Id, c.VendingMachineId, c.Coin.Id, c.Coin.Nominal, c.Count, c.IsActive))
+                    .ToArray();
 
-            VMCoin[] coins = await HttpHelper.GetVmCoins(App.VendingMachine.Id);
-            Coins = coins
-                .Select(c => new VMCoinBlank(c.Id, c.VendingMachineId, c.Coin.Id, c.Coin.Nominal, c.Count, c.IsActive))
-                .ToArray();
-
-            coinsListBox.ItemsSource = null;
-            coinsListBox.ItemsSource = Coins;
-
-            App.Base.LoadingStop();
+                coinsListBox.ItemsSource = null;
+                coinsListBox.ItemsSource = Coins;
+            });
         }
 
         private async Task LoadDrinks()
         {
-            App.Base.LoadingRun();
+            await UserInterface.Freeze(async () =>
+            {
+                VMDrink[] drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
+                Drinks = drinks
+                    .Select(d => new VMDrinkBlank(d.Id, d.Drink.Name, d.Drink.Image, d.VendingMachineId, d.Drink.Id, d.Drink.Nominal, d.Count))
+                    .OrderBy(d => d.Nominal)
+                    .ToArray();
 
-            VMDrink[] drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
-            Drinks = drinks
-                .Select(d => new VMDrinkBlank(d.Id, d.Drink.Name, d.Drink.Image, d.VendingMachineId, d.Drink.Id, d.Drink.Nominal, d.Count))
-                .OrderBy(d => d.Nominal)
-                .ToArray();
-
-            drinksListBox.ItemsSource = null;
-            drinksListBox.ItemsSource = Drinks;
-
-            App.Base.LoadingStop();
+                drinksListBox.ItemsSource = null;
+                drinksListBox.ItemsSource = Drinks;
+            });
         }
 
         private async Task LoadReports()
         {
-            App.Base.LoadingRun();
+            await UserInterface.Freeze(async () =>
+            {
+                VMDrink[] drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
+                Reports = await HttpHelper.GetDrinkReports(drinks.Select(d => d.Drink.Id).ToArray());
 
-            VMDrink[] drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
-            Reports = await HttpHelper.GetDrinkReports(drinks.Select(d => d.Drink.Id).ToArray());
-
-            reportsBox.ItemsSource = null;
-            reportsBox.ItemsSource = Reports;
-
-            App.Base.LoadingStop();
+                reportsBox.ItemsSource = null;
+                reportsBox.ItemsSource = Reports;
+            });
         }
 
         private void returnButton_Click(object sender, RoutedEventArgs e)
@@ -91,14 +88,16 @@ namespace VendingMachine.UI.Views.Pages
 
         private async void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            App.Base.LoadingRun();
-            Result result = await HttpHelper.SaveCoins(Coins);
-            if (!result.IsSuccess)
+            await UserInterface.Freeze(async () =>
             {
-                App.ShowMessage(result.Error);
-                return;
-            }
-            await LoadCoins();
+                Result result = await HttpHelper.SaveCoins(Coins);
+                if (!result.IsSuccess)
+                {
+                    App.ShowMessage(result.Error);
+                    return;
+                }
+                await LoadCoins();
+            });
         }
 
         private async void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -125,14 +124,14 @@ namespace VendingMachine.UI.Views.Pages
 
         private async void ShowEditor(VMDrinkBlank? blank = null)
         {
-            App.Base.LoadingRun();
+            await UserInterface.Freeze(async () =>
+            {
+                DrinkEditor editor = new(blank);
+                editor.Owner = App.Base;
+                editor.ShowDialog();
 
-            DrinkEditor editor = new(blank);
-            editor.Owner = App.Base;
-            editor.ShowDialog();
-
-            App.Base.LoadingStop();
-            await LoadDrinks();
+                await LoadDrinks();
+            });
         }
     }
 }

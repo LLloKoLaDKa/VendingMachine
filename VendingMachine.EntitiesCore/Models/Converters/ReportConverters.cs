@@ -8,7 +8,7 @@ namespace VendingMachine.EntitiesCore.Models.Converters
     {
         public static DrinkHistory ToHistory(this VMDrinkHistoryDb db)
         {
-            return new DrinkHistory(db.Id, db.DrinkId, db.Count, db.Nominal, db.Type, db.Date);
+            return new DrinkHistory(db.Id, db.DrinkId, db.VendingMachineId, db.Count, db.Nominal, db.Type, db.Date);
         }
 
         public static DrinkHistory[] ToHistories(this IEnumerable<VMDrinkHistoryDb> dbs)

@@ -65,9 +65,9 @@ namespace VendingMachine.API.Areas.Drinks
         #region DrinkReports
 
         [HttpPost("Drinks/GetReports")]
-        public DrinkReport[] GetDrinkReports([FromBody] Guid[] drinkIds)
+        public DrinkReport[] GetDrinkReports([FromBody] Guid[] drinkIds, [FromQuery] Guid vendingMachineId)
         {
-            return _drinksRepository.GetDrinkReports(drinkIds);
+            return _drinksRepository.GetDrinkReports(drinkIds, vendingMachineId);
         }
 
         #endregion DrinkReports

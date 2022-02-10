@@ -48,19 +48,18 @@ namespace VendingMachine.UI.Views.Pages
 
         public async void LoadData()
         {
-            App.Base.LoadingRun();
+            await UserInterface.Freeze(async () =>
+            {
+                if (App.VendingMachine is null) await App.Base.LoadVendingMachine();
 
-            if (App.VendingMachine is null) await App.Base.LoadVendingMachine();
+                Coins = await HttpHelper.GetVmCoins(App.VendingMachine.Id);
+                coinsListView.ItemsSource = null;
+                coinsListView.ItemsSource = Coins;
 
-            Coins = await HttpHelper.GetVmCoins(App.VendingMachine.Id);
-            coinsListView.ItemsSource = null;
-            coinsListView.ItemsSource = Coins;
-
-            Drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
-            drinksListBox.ItemsSource = null;
-            drinksListBox.ItemsSource = Drinks;
-
-            App.Base.LoadingStop();
+                Drinks = await HttpHelper.GetVmDrinks(App.VendingMachine.Id);
+                drinksListBox.ItemsSource = null;
+                drinksListBox.ItemsSource = Drinks;
+            });
         }
 
         private void Money_Click(object sender, RoutedEventArgs e)
@@ -166,54 +165,55 @@ namespace VendingMachine.UI.Views.Pages
 
         private async void buyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ClientMoney == 0) { App.ShowMessage("Внесите деньги"); return; }
-            if (ClientMoney != 0 && OrderPrice == 0)
+            await UserInterface.Freeze(async () =>
             {
-                MachineGiveMoney(ClientMoney);
-                App.ShowMessage($"Вы получили сдачу: {ClientMoney - OrderPrice} руб.");
+                if (ClientMoney == 0) { App.ShowMessage("Внесите деньги"); return; }
+                if (ClientMoney != 0 && OrderPrice == 0)
+                {
+                    MachineGiveMoney(ClientMoney);
+                    App.ShowMessage($"Вы получили сдачу: {ClientMoney - OrderPrice} руб.");
+                    ClientMoney = 0;
+
+                    this.DataContext = null;
+                    this.DataContext = this;
+                    return;
+                }
+
+                if (OrderPrice > ClientMoney)
+                {
+                    App.ShowMessage($"Вашего баланса не хватает для покупки товаров.{Environment.NewLine}Не хватает: {OrderPrice - ClientMoney} руб.");
+                    return;
+                }
+
+                Boolean canGiveMoney = MachineGiveMoney(ClientMoney - OrderPrice);
+                if (!canGiveMoney)
+                {
+                    App.ShowMessage($"Аппарат не смог вернуть сдачу - не хватает монет внутри автомата{Environment.NewLine}" +
+                        $"Попробуйте внести монеты с другим номиналом, чтобы автомат мог выдать сдачу.{Environment.NewLine}" +
+                        $"Перед этим стоит очистить свою корзину и вернуть все ваши монеты внутри автомата:)");
+                    return;
+                }
+
+                await HttpHelper.SaveCoins(Coins
+                    .Select(c => new VMCoinBlank(c.Id, c.VendingMachineId, c.Coin.Id, c.Coin.Nominal, c.Count, c.IsActive))
+                    .ToArray());
+
+                await HttpHelper.SaveDrinks(Drinks
+                    .Select(d => new VMDrinkBlank(d.Id, d.Drink.Name, d.Drink.Image, d.VendingMachineId, d.Drink.Id, d.Drink.Nominal, d.Count))
+                    .ToArray());
+
+                App.ShowMessage($"Вы получили свои товары и сдачу: {ClientMoney - OrderPrice} руб.");
+
+
+                Basket.Clear();
                 ClientMoney = 0;
 
+                orderListBox.ItemsSource = null;
+                orderListBox.ItemsSource = Basket;
                 this.DataContext = null;
                 this.DataContext = this;
-                return; 
-            }
-
-            if (OrderPrice > ClientMoney)
-            {
-                App.ShowMessage($"Вашего баланса не хватает для покупки товаров.{Environment.NewLine}Не хватает: {OrderPrice - ClientMoney} руб.");
-                return;
-            }
-
-            Boolean canGiveMoney = MachineGiveMoney(ClientMoney - OrderPrice);
-            if (!canGiveMoney)
-            {
-                App.ShowMessage($"Аппарат не смог вернуть сдачу - не хватает монет внутри автомата{Environment.NewLine}" +
-                    $"Попробуйте внести монеты с другим номиналом, чтобы автомат мог выдать сдачу.{Environment.NewLine}" +
-                    $"Перед этим стоит очистить свою корзину и вернуть все ваши монеты внутри автомата:)");
-                return;
-            }
-
-            await HttpHelper.SaveCoins(Coins
-                .Select(c => new VMCoinBlank(c.Id, c.VendingMachineId, c.Coin.Id, c.Coin.Nominal, c.Count, c.IsActive))
-                .ToArray());
-
-            await HttpHelper.SaveDrinks(Drinks
-                .Select(d => new VMDrinkBlank(d.Id, d.Drink.Name, d.Drink.Image, d.VendingMachineId, d.Drink.Id, d.Drink.Nominal, d.Count))
-                .ToArray());
-
-            App.ShowMessage($"Вы получили свои товары и сдачу: {ClientMoney - OrderPrice} руб.");
-
-
-            Basket.Clear();
-            ClientMoney = 0;
-
-            orderListBox.ItemsSource = null;
-            orderListBox.ItemsSource = Basket;
-            this.DataContext = null;
-            this.DataContext = this;
-            basketLabel.Content = OrderPriceString;
-
-            App.Base.LoadingStop();
+                basketLabel.Content = OrderPriceString;
+            });
         }
 
         private Boolean MachineGiveMoney(Int32 @return)

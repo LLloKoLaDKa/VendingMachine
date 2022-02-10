@@ -13,6 +13,9 @@ namespace VendingMachine.EntitiesCore.Models
         [Column("drinkid")]
         public Guid DrinkId { get; set; }
 
+        [Column("vendingmachineid")]
+        public Guid VendingMachineId { get; set; }
+
         /// <summary>
         /// При Type = Refill => количество после заправки
         /// При Type = Buy => Количество покупки
@@ -29,10 +32,11 @@ namespace VendingMachine.EntitiesCore.Models
         [Column("datetime")]
         public DateTime Date {get;set;}
 
-        public VMDrinkHistoryDb(Guid id, Guid drinkId, Int32 count, Int32 nominal, HistoryType type)
+        public VMDrinkHistoryDb(Guid id, Guid drinkId, Guid vendingMachineId, Int32 count, Int32 nominal, HistoryType type)
         {
             Id = id;
             DrinkId = drinkId;
+            VendingMachineId = vendingMachineId;
             Count = count;
             Nominal = nominal;
             Type = type;
